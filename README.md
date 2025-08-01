@@ -15,8 +15,19 @@ To help navigate the repository, below is an overview of the contents and relate
 - [Python Environment Setup](#python-environment-setup)
 
 ## Data Preprocessing and Feature Encoding
+ 
+### Comparison of encoding strategies
+
+### Scripts
+**`1_data_processing/`** contains scripts for data preprocessing, dataset splitting, and generating traces, prefixes, and next activities:  
+- `preprocessing.py` handles data preprocessing
+- `train_test_split.py` handles dataset splitting.  
+- `create_trace_prefix.py`: generates traces (trace-based encoding), prefixes, log prefixes, and trace suffixes. 
 
 ## Implemented Architectures
+**`2_models/`** contains the implementation scripts for all models used in this study:
+- `create_dl_model.py` defines the deep learning architectures, including LSTM, Transformer, and xLSTM models.
+- `xgboost.py` implements the XGBoost model.
 
 ## Loss Functions, Training and Evaluation
 
