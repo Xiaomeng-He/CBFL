@@ -5,13 +5,16 @@ This repository provides the implementation details and supplementary materials 
 
 To help navigate the repository, below is an overview of the contents and related materials referenced in the paper:
 
-- [Feature Engineering](#feature-engineering)
+- [Data Preprocessing and Feature Encoding](#data-preprocessing-and-feature-encoding)
+  - Experimental results comparing selected encoding strategies against alternative approaches.
 - [Implemented Architectures](#implemented-architectures)
 - [Loss Functions, Training and Evaluation](#loss-functions-training-and-evaluation)
 - [Results](#results)
+  - Detailed report on overall model performance, including additional metrics such as AUC-PR, accuracy, precision, and recall.
+  - Complete set of visualizations illustrating F1-score trends for majority and minority groups across varying majority/minority thresholds.
 - [Python Environment Setup](#python-environment-setup)
 
-## Feature Engineering
+## Data Preprocessing and Feature Encoding
 
 ## Implemented Architectures
 
