@@ -1,6 +1,6 @@
 # CBFL
 ## Introduction
-Welcome to the project repository for the paper "Tackling Multi-Class Imbalance in Next Activity Prediction with Class-Balanced Focal Loss."
+Welcome to the project repository for the paper **Tackling Multi-Class Imbalance in Next Activity Prediction with Class-Balanced Focal Loss**.
 This repository provides the implementation details and supplementary materials to support the findings presented in the paper.
 
 To help navigate the repository, below is an overview of the contents and related materials referenced in the paper:
