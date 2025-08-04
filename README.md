@@ -3,7 +3,7 @@
 Welcome to the project repository for the paper **Tackling Multi-Class Imbalance in Next Activity Prediction with Class-Balanced Focal Loss**.
 This repository provides the implementation details and supplementary materials to support the findings presented in the paper.
 
-To help navigate the repository, below is an overview of the contents and related materials referenced in the paper:
+To help navigate the repository, the following overview outlines the contents and links to the materials referenced in the paper.
 
 - [Data Preprocessing and Feature Encoding](#data-preprocessing-and-feature-encoding)
   - Experimental results comparing selected encoding strategies against alternative approaches.
