@@ -1,7 +1,7 @@
 # CBFL
 ## Introduction
 Welcome to the project repository for the paper **Tackling Multi-Class Imbalance in Next Activity Prediction with Class-Balanced Focal Loss**.
-This repository provides the implementation details and supplementary materials to support the findings presented in the paper.
+This repository provides the implementation details and supplementary materials to support the findings presented in the paper:
 
 To help navigate the repository, the following overview outlines the contents and links to the materials referenced in the paper.
 
@@ -24,17 +24,17 @@ The results show that our selected strategies perform on par with or better than
 |              |**BPIC2017**    |        |**BPIC2019**|            |**BPIC2020**|            |**BAC**     |            |
 |--------------|------------|------------|------------|------------|------------|------------|------------|------------|
 |              | Selected   | Alternative| Selected   | Alternative| Selected   | Alternative| Selected   | Alternative|
-| XGBoost      | 76.2       | 72.6       | 42         |            | 44.3       | 44.4       | 42.7       |  42.1      |
+| XGBoost      | 76.2       | 72.6       | 42         | 37.1       | 44.3       | 44.4       | 42.7       |  42.1      |
 | LSTM         |            |            |            |            |            |            |            |            |
 | Transformer  |            |            |            |            |            |            |            |            |
 | xLSTM        |            |            |            |            |            |            |            |            |
 
 
 ### Scripts
-**`1_data_processing/`** contains scripts for data preprocessing, dataset splitting, and generating traces, prefixes, and next activities:  
-- `preprocessing.py` handles data preprocessing
-- `train_test_split.py` handles dataset splitting.  
-- `create_trace_prefix.py`: generates traces (trace-based encoding), prefixes, log prefixes, and trace suffixes. 
+**`1_data_processing/`** contains scripts for data preprocessing, dataset splitting, and the generation of traces, prefixes, and next activities:  
+- `preprocessing.py` performs data preprocessing
+- `train_test_split.py` splits the dataset into training, validation and test sets..  
+- `create_trace_prefix.py`: generates traces (for trace-based encoding), as well as prefixes and next activities (for prefix-based encoding). 
 
 ## Implemented Architectures
 **`2_models/`** contains the implementation scripts for all models used in this study:
@@ -42,16 +42,31 @@ The results show that our selected strategies perform on par with or better than
 - `xgboost.ipynb` implements the XGBoost model.
 
 ## Loss Functions, Training and Evaluation
+**`3_train_evaluate/`** contains scripts that define loss functions—including Cross-Entropy Loss (CEL), Class-Balanced Loss (CBFL), and inverse frequency weighting—as well as functions for training, validation, and evaluation:
+- `loss_function.py` implements the loss functions..
+- `train_evaluate.py` contains functions for training, validation, and evaluation.  
 
 ## Results
 ### Overall performance with additional metrics
+The following table includes additional metrics to assess overall predictive performance, reported as macro-averages across all classes. 
+These metrics include Area Under the Precision-Recall Curve (`AUC-PR`), Accuracy (`Acc`), Precision (`Pre`), and Recall (`Rec`).
+
 |              |**BPIC2017**|        |     |     |**BPIC2019**|        |     |     |**BPIC2020**|        |     |     |**BAC**     |        |     |     |
 |--------------|------------|--------|-----|-----|------------|--------|-----|-----|------------|--------|-----|-----|------------|--------|-----|-----|
-|              | Accuracy   | AUC-PR | Pre | Rec | Accuracy   | AUC-PR | Pre | Rec | Accuracy   | AUC-PR | Pre | Rec | Accuracy   | AUC-PR | Pre | Rec |
-| XGBoost      |            |        |     |     |            |        |     |     |            |        |     |     |            |        |     |     |
-| LSTM         |            |        |     |     |            |        |     |     |            |        |     |     |            |        |     |     |
-| Transformer  |            |        |     |     |            |        |     |     |            |        |     |     |            |        |     |     |
-| xLSTM        |            |        |     |     |            |        |     |     |            |        |     |     |            |        |     |     |
+|              | AUC-PR     | Acc    | Pre | Rec | AUC-PR     | Acc    | Pre | Rec | AUC-PR     | Acc    | Pre | Rec | AUC-PR     | Acc    | Pre | Rec |
+|**Baseline:CEL**|
+| XGBoost      |            |88.67   |81.26|75.65|            | 81.02  |35.15|27.41|            | 89.97  |52.85|51.79|              |78.87 |59.31|40.94|
+| LSTM         |            |        |     |     |            |        |     |     |            |        |     |     |            |           |     |     |
+| Transformer  |            |        |     |     |            |        |     |     |            |        |     |     |            |           |     |     |
+| xLSTM        |            |        |     |     |            |        |     |     |            |        |     |     |            |           |     |     |
+|**CBFL**|
+| XGBoost      |            |87.97   |78.97|79.41|            | 80.76  |31.63|26.49|            |84.43   |52.97|57.49|             |78.89 |60.81|42.90|
+| LSTM         |            |        |     |     |            |        |     |     |            |        |     |     |            |           |     |     |
+| Transformer  |            |        |     |     |            |        |     |     |            |        |     |     |            |           |     |     |
+| xLSTM        |            |        |     |     |            |        |     |     |            |        |     |     |            |           |     |     |
+
+### Visualizations with varying majority/minority thresholds
+
 
 ## Python Environment Setup
 The implementation is based on **Python 3.12.7**. To set up the environment, download `requirements.txt` and run the following command::
