@@ -25,8 +25,8 @@ The results show that our selected strategies perform on par with or better than
 |--------------|------------|------------|------------|------------|------------|------------|------------|------------|
 |              | Selected   | Alternative| Selected   | Alternative| Selected   | Alternative| Selected   | Alternative|
 | XGBoost      | 76.2       |72.6 (-3.6) | 42         |37.1 (-4.9) | 44.3       |44.4 (+0.1) | 42.7       |42.1 (-0.6) |
-| LSTM         |            |            | 36.1       |            |            |            |            |            |
-| Transformer  |            |            | 37.2       |            |            |            |            |            |
+| LSTM         | 77.0       |            | 36.1       |            |            |            |            |            |
+| Transformer  | 77.8       |78.2 (+0.4) | 37.2       |37.1 (-0.1) |            |            |            |            |
 | xLSTM        |            |            | 36.5       |            |            |            |            |            |
 
 
