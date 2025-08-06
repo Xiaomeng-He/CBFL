@@ -17,33 +17,33 @@ To help navigate the repository, the following overview outlines the contents an
 ## Data Preprocessing and Feature Encoding
  
 ### Comparison of encoding strategies
-The table below reports F1-scores on the validation set for both our selected encoding strategy (`Selected`) and a widely used alternative (`Alternative`). For XGBoost, we employ prefix-based index encoding as the selected strategy and compare it against prefix-based aggregation encoding, a common choice in prior work. For deep learning models, we use trace-based encoding as our selected strategy, with prefix-based index encoding as the alternative.
+The table below reports F1-scores on the validation set for our selected encoding strategy (`Selected`) and a widely used alternative (`Alternative`). For XGBoost, we employ prefix-based index encoding as the selected strategy and compare it against prefix-based aggregation encoding, a common choice in prior work. For deep learning models, we use trace-based encoding as our selected strategy, with prefix-based index encoding as the alternative.
 
 The results show that our selected strategies perform on par with or better than the alternatives, supporting our choices.
 
 |              |**BPIC2017**    |        |**BPIC2019**|            |**BPIC2020**|            |**BAC**     |            |
 |--------------|------------|------------|------------|------------|------------|------------|------------|------------|
 |              | Selected   | Alternative| Selected   | Alternative| Selected   | Alternative| Selected   | Alternative|
-| XGBoost      | 76.2       | 72.6       | 42         | 37.1       | 44.3       | 44.4       | 42.7       |  42.1      |
-| LSTM         |            |            |            |            |            |            |            |            |
-| Transformer  |            |            |            |            |            |            |            |            |
-| xLSTM        |            |            |            |            |            |            |            |            |
+| XGBoost      | 76.2       |72.6 (-3.6) | 42         |37.1 (-4.9) | 44.3       |44.4 (+0.1) | 42.7       |42.1 (-0.6) |
+| LSTM         |            |            | 36.1       |            |            |            |            |            |
+| Transformer  |            |            | 37.2       |            |            |            |            |            |
+| xLSTM        |            |            | 36.5       |            |            |            |            |            |
 
 
 ### Scripts
-**`1_data_processing/`** contains scripts for data preprocessing, dataset splitting, and the generation of traces, prefixes, and next activities:  
+**`data_processing/`** contains scripts for data preprocessing, dataset splitting, and the generation of traces, prefixes, and next activities:  
 - `preprocessing.py` performs data preprocessing
 - `train_test_split.py` splits the dataset into training, validation and test sets..  
 - `create_trace_prefix.py`: generates traces (for trace-based encoding), as well as prefixes and next activities (for prefix-based encoding). 
 
 ## Implemented Architectures
-**`2_models/`** contains the implementation scripts for all models used in this study:
+**`models/`** contains the implementation scripts for all models used in this study:
 - `create_dl_model.py` defines the deep learning architectures, including LSTM, Transformer, and xLSTM models.
 - `xgboost.ipynb` implements the XGBoost model.
 
 ## Loss Functions, Training and Evaluation
-**`3_train_evaluate/`** contains scripts that define loss functions—including Cross-Entropy Loss (CEL), Class-Balanced Loss (CBFL), and inverse frequency weighting—as well as functions for training, validation, and evaluation:
-- `loss_function.py` implements the loss functions..
+**`train_evaluate/`** contains scripts that define loss functions—including Cross-Entropy Loss (CEL), Class-Balanced Loss (CBFL), and inverse frequency weighting—as well as functions for training, validation, and evaluation:
+- `loss_function.py` implements the loss functions.
 - `train_evaluate.py` contains functions for training, validation, and evaluation.  
 
 ## Results
@@ -56,13 +56,13 @@ These metrics include Area Under the Precision-Recall Curve (`AUC-PR`), Accuracy
 |              | AUC-PR     | Acc    | Pre | Rec | AUC-PR     | Acc    | Pre | Rec | AUC-PR     | Acc    | Pre | Rec | AUC-PR     | Acc    | Pre | Rec |
 |**Baseline:CEL**|
 | XGBoost      |            |88.67   |81.26|75.65|            | 81.02  |35.15|27.41|            | 89.97  |52.85|51.79|              |78.87 |59.31|40.94|
-| LSTM         |            |        |     |     |            |        |     |     |            |        |     |     |            |           |     |     |
-| Transformer  |            |        |     |     |            |        |     |     |            |        |     |     |            |           |     |     |
+| LSTM         |            |88.69   |82.98|75.63|            | 81.51  |35.09|28.87|            | 90.03  |49.87|50.45|            |78.51 |55.22|39.48|
+| Transformer  |            |88.90   |83.94|75.52|            | 81.89  |37.09|28.79|            | 90.00  |49.68|50.52|            |78.88 |57.62|40.14|
 | xLSTM        |            |        |     |     |            |        |     |     |            |        |     |     |            |           |     |     |
 |**CBFL**|
 | XGBoost      |            |87.97   |78.97|79.41|            | 80.76  |31.63|26.49|            |84.43   |52.97|57.49|             |78.89 |60.81|42.90|
-| LSTM         |            |        |     |     |            |        |     |     |            |        |     |     |            |           |     |     |
-| Transformer  |            |        |     |     |            |        |     |     |            |        |     |     |            |           |     |     |
+| LSTM         |            |88.03   |78.43|79.93|            | 81.65  |36.15|32.44|            |83.94   |57.11|52.81|            |78.62 |59.83|42.82|
+| Transformer  |            |87.90   |79.15|81.28|            | 81.91  |37.01|30.09|            |83.67   |51.45|52.54|            |78.70 |60.24|44.07|
 | xLSTM        |            |        |     |     |            |        |     |     |            |        |     |     |            |           |     |     |
 
 ### Visualizations with varying majority/minority thresholds
