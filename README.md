@@ -73,6 +73,13 @@ These metrics include Area Under the Precision-Recall Curve (`AUC-PR`), Accuracy
   <img src="images/2017_xlstm.png" width="180"/>
 </p>
 
+<p align="center">
+  <img src="images/2019_xgboost.png" width="180"/>
+  <img src="images/2019_lstm.png" width="180"/>
+  <img src="images/2019_trans.png" width="180"/>
+  <img src="images/2019_xlstm.png" width="180"/>
+</p>
+
 ## Python Environment Setup
 The implementation is based on **Python 3.12.7**. To set up the environment, download `requirements.txt` and run the following command::
 
