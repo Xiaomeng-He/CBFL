@@ -67,10 +67,10 @@ These metrics include Area Under the Precision-Recall Curve (`AUC-PR`), Accuracy
 
 ### Visualizations with varying majority/minority thresholds
 <p align="center">
-  <img src="images/2017_xgb.png" width="200"/>
-  <img src="images/2017_lstm.png" width="200"/>
-  <img src="images/2017_xgb.png" width="200"/>
-  <img src="images/2017_lstm.png" width="200"/>
+  <img src="images/2017_xgboost.png" width="180"/>
+  <img src="images/2017_lstm.png" width="180"/>
+  <img src="images/2017_trans.png" width="180"/>
+  <img src="images/2017_xlstm.png" width="180"/>
 </p>
 
 ## Python Environment Setup
