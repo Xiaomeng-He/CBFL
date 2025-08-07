@@ -27,7 +27,7 @@ The results show that our selected strategies perform on par with or better than
 | XGBoost      | 76.2       |72.6 (-3.6) | 42         |37.1 (-4.9) | 44.3       |44.4 (+0.1) | 42.7       |42.1 (-0.6) |
 | LSTM         | 77.0       |78.0 (+1.0) | 36.1       |36.8 (+0.7) | 43.4       |43.5 (+0.1) | 40.6       |41.3 (+0.7) |
 | Transformer  | 77.8       |78.2 (+0.4) | 37.2       |37.1 (-0.1) | 43.7       |44.9 (+1.2) | 41.0       |40.9 (-0.1) |
-| xLSTM        | 78.2       |78.6 (+0.4) | 36.5       |            | 44.5       |44.7 (+0.2) | 41.5       |41.8 (-0.3) |
+| xLSTM        | 78.2       |78.6 (+0.4) | 36.5       |35.8 (-0.7) | 44.5       |44.7 (+0.2) | 41.5       |41.8 (-0.3) |
 
 
 ### Scripts
@@ -42,7 +42,7 @@ The results show that our selected strategies perform on par with or better than
 - `xgboost.ipynb` implements the XGBoost model.
 
 ## Loss Functions, Training and Evaluation
-**`train_evaluate/`** contains scripts that define loss functions—including Cross-Entropy Loss (CEL), Class-Balanced Loss (CBFL), and inverse frequency weighting—as well as functions for training, validation, and evaluation:
+**`train_evaluate/`** contains scripts that define loss functions, including Cross-Entropy Loss (CEL), Class-Balanced Loss (CBFL), and inverse frequency weighting, as well as functions for training, validation, and evaluation:
 - `loss_function.py` implements the loss functions.
 - `train_evaluate.py` contains functions for training, validation, and evaluation.  
 
@@ -66,18 +66,36 @@ These metrics include Area Under the Precision-Recall Curve (`AUC-PR`), Accuracy
 | xLSTM        |            |88.09   |78.91|80.10|            | 81.47  |35.31|31.46|            |85.59   |53.57|53.75|            |78.61 |58.47|43.21|
 
 ### Visualizations with varying majority/minority thresholds
-<p align="center">
+<p align="left">
+  <img src="images/legend.png" width="150"/>
+</p>
+
+<p align="left">
   <img src="images/2017_xgboost.png" width="180"/>
   <img src="images/2017_lstm.png" width="180"/>
-  <img src="images/2017_trans.png" width="180"/>
+  <img src="images/2017_transformer.png" width="180"/>
   <img src="images/2017_xlstm.png" width="180"/>
 </p>
 
-<p align="center">
+<p align="left">
   <img src="images/2019_xgboost.png" width="180"/>
   <img src="images/2019_lstm.png" width="180"/>
-  <img src="images/2019_trans.png" width="180"/>
+  <img src="images/2019_transformer.png" width="180"/>
   <img src="images/2019_xlstm.png" width="180"/>
+</p>
+
+<p align="left">
+  <img src="images/2020_xgboost.png" width="180"/>
+  <img src="images/2020_lstm.png" width="180"/>
+  <img src="images/2020_transformer.png" width="180"/>
+  <img src="images/2020_xlstm.png" width="180"/>
+</p>
+
+<p align="left">
+  <img src="images/bac_xgboost.png" width="180"/>
+  <img src="images/bac_lstm.png" width="180"/>
+  <img src="images/bac_transformer.png" width="180"/>
+  <img src="images/bac_xlstm.png" width="180"/>
 </p>
 
 ## Python Environment Setup
