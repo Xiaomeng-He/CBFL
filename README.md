@@ -66,7 +66,12 @@ These metrics include Area Under the Precision-Recall Curve (`AUC-PR`), Accuracy
 | xLSTM        |            |88.09   |78.91|80.10|            | 81.47  |35.31|31.46|            |85.59   |53.57|53.75|            |78.61 |58.47|43.21|
 
 ### Visualizations with varying majority/minority thresholds
-
+<p align="center">
+  <img src="images/2017_xgb.png" width="200"/>
+  <img src="images/2017_lstm.png" width="200"/>
+  <img src="images/2017_xgb.png" width="200"/>
+  <img src="images/2017_lstm.png" width="200"/>
+</p>
 
 ## Python Environment Setup
 The implementation is based on **Python 3.12.7**. To set up the environment, download `requirements.txt` and run the following command::
