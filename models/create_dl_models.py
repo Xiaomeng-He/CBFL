@@ -73,7 +73,7 @@ class xLSTM(nn.Module):
         
         slstmconfig = sLSTMBlockConfig(
                 slstm=sLSTMLayerConfig(
-                    backend=  "cuda" if torch.cuda.is_available() else 'vanilla'.
+                    backend=  "cuda" if torch.cuda.is_available() else 'vanilla',
                     num_heads=4,
                     conv1d_kernel_size=4,
                     bias_init="powerlaw_blockdependent",
