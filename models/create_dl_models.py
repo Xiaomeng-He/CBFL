@@ -1,3 +1,15 @@
+"""
+This module contains classes for building LSTM, xLSTM, and Transformer models.
+
+Classes:
+
+    LSTM 
+    xLSTM
+    PositionalEncoding
+    Transformer
+
+"""
+
 import torch
 import math
 import torch.nn as nn
@@ -16,6 +28,26 @@ class LSTM(nn.Module):
     def __init__(self, 
                  num_act, num_time_features, d_embed,
                  hidden_size, num_layers, dropout, bidirect):
+        """
+
+        Parameters
+        ----------
+        num_act: int
+            Number of activity labels, including padding, SOC, EOC, and the unknown label.
+        num_time_features: int
+            Number of temporal features.
+        d_embed: int
+            Dimension of the embedding layer.
+        hidden_size: int
+            Number of hidden units in the LSTM.
+        num_layers: int
+            Number of stacked LSTM layers.
+        dropout: float
+            Dropout probability to drop out the outputs of each LSTM layer 
+            except the last layer.
+        bidirect: bool
+            Whether the LSTM is bidirectional.
+        """
         
         super().__init__()
         
@@ -38,6 +70,24 @@ class LSTM(nn.Module):
     def forward(self, 
                 trace_prefix_act,
                 trace_prefix_time):
+        """
+
+        Parameters
+        ----------
+        trace_prefix_act: torch.Tensor
+            Trace prefix of activity labels.
+            shape: (batch_size, prefix_len)
+        trace_prefix_time: torch.Tensor
+            Trace prefix of temporal features.
+            shape: (batch_size, prefix_len, 2)
+
+        Returns
+        -------
+        predictions: torch.Tensor
+            Predicted activity label probabilities.
+            shape: (batch_size, prefix_len, num_act)
+
+        """
         
         # process input
         act_embed = self.embedding(trace_prefix_act)
@@ -58,6 +108,26 @@ class xLSTM(nn.Module):
                  num_act, num_time_features, d_embed,
                  mix_mode,
                  num_blocks, slstm_at):
+        """
+
+        Parameters
+        ----------
+        prefix_len: int
+            Length of the input prefix sequence.
+        num_act: int
+            Number of activity labels, including padding, SOC, EOC, and the unknown label.
+        num_time_features: int
+            Number of temporal features.
+        d_embed: int
+            Dimension of the embedding layer.
+        mix_mode: str
+           One of {"mlstm", "slstm", "mix"}.
+        num_blocks: int
+            Number of stacked xLSTM blocks.
+        slstm_at: list
+             Positions of sLSTM blocks. Use an empty list (`[]`) if no sLSTM is 
+             used.
+        """
         
         super().__init__()
         
@@ -98,6 +168,24 @@ class xLSTM(nn.Module):
     def forward(self, 
                 trace_prefix_act,
                 trace_prefix_time):
+        """
+
+        Parameters
+        ----------
+        trace_prefix_act: torch.Tensor
+            Trace prefix of activity labels.
+            shape: (batch_size, prefix_len)
+        trace_prefix_time: torch.Tensor
+            Trace prefix of temporal features.
+            shape: (batch_size, prefix_len, 2)
+
+        Returns
+        -------
+        predictions: torch.Tensor
+            Predicted activity label probabilities.
+            shape: (batch_size, prefix_len, num_act)
+
+        """
         
         # process input
         act_embed = self.embedding(trace_prefix_act)
@@ -113,6 +201,15 @@ class xLSTM(nn.Module):
 
 class PositionalEncoding(nn.Module):
     def __init__(self, d_model, prefix_len):
+        """
+
+        Parameters
+        ----------
+        d_model: int
+            Hidden size of the Transformer.
+        prefix_len: int
+            Length of the input prefix sequence.
+        """
         super(PositionalEncoding, self).__init__()
 
         pe = torch.zeros(prefix_len, d_model)
@@ -130,11 +227,36 @@ class PositionalEncoding(nn.Module):
         return x
 
 class Transformer(nn.Module):
+
     def __init__(self, 
                  prefix_len, 
                  num_act, num_time_features, d_embed, 
                  d_model, num_heads, d_ff, dropout,
                  num_layers):
+        """
+
+        Parameters
+        ----------
+        prefix_len: int
+            Length of the input prefix sequence.
+        num_act: int
+            Number of activity labels, including padding, SOC, EOC, and the unknown label.
+        num_time_features: int
+            Number of temporal features.
+        d_embed: int
+            Dimension of the embedding layer.
+        d_model: int
+            Hidden size of the Transformer.
+        num_heads: int
+            Number of attention heads in each Transformer layer.
+        d_ff: int
+            Dimension of the feed-forward layer in the Transformer.
+        dropout: float
+            Dropout probability applied to various layers for regularization.
+        num_layers: int
+            Number of stacked Transformer layers.
+        """
+
         super().__init__()
         self.d_model = d_model
         self.prefix_len = prefix_len
@@ -153,6 +275,24 @@ class Transformer(nn.Module):
     def forward(self,
                 trace_prefix_act,
                 trace_prefix_time):
+        """
+
+        Parameters
+        ----------
+        trace_prefix_act: torch.Tensor
+            Trace prefix of activity labels.
+            shape: (batch_size, prefix_len)
+        trace_prefix_time: torch.Tensor
+            Trace prefix of temporal features.
+            shape: (batch_size, prefix_len, 2)
+
+        Returns
+        -------
+        predictions: torch.Tensor
+            Predicted activity label probabilities.
+            shape: (batch_size, prefix_len, num_act)
+
+        """
         
         # process input
         act_embed = self.embedding(trace_prefix_act) * math.sqrt(self.d_model)
